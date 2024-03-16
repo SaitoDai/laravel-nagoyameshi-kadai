@@ -58,6 +58,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        echo('aaa');//return redirect('/verify-email');
+        dd('aaa');//return redirect('/verify-email');
     }
 }
