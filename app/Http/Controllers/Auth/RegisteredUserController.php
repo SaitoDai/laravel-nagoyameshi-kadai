@@ -30,7 +30,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        /*$request->validate([
+        $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'kana' => ['required', 'string', 'regex:/\A[ァ-ヴー\s]+\z/u', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
             'phone_number' => ['required', 'digits_between:10, 11'],
             'birthday'=> ['nullable', 'digits:8'],
             'occupation' => ['nullable', 'string', 'max:255'],
-        ]);*/echo('aaa');
+        ]);
 
         $user = User::create([
             'name' => $request->name,
