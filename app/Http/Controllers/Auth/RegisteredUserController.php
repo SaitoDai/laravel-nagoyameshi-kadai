@@ -30,8 +30,6 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        dd('aaa');
-
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'kana' => ['required', 'string', 'regex:/\A[ァ-ヴー\s]+\z/u', 'max:255'],
