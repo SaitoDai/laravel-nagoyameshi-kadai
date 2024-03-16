@@ -2,7 +2,7 @@
     <div class="container nagoyameshi-container">
         <a class="navbar-brand nagoyameshi-app-name" href="{{ url('/') }}">
             <div class="d-flex align-items-center">
-                <img class="nagoyameshi-logo me-1" src ="{{ asset('/images/logo.svg') }}" alt="nagoyameshi">
+                <img class="nagoyameshi-logo me-1" src ="{{ asset('/images/logo.png') }}" alt="nagoyameshi">
                 NAGOYAMESHI
             </div>
         </a>
