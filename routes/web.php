@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,15 @@ Route::get('/', function () {
 
 
 require __DIR__.'/auth.php';
+
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function () {
+    Route::get('home', [Admin\HomeController::class, 'index'])->name('home');
+});
+// 'prefix' ... URIの先頭を一括で指定 'Route::get('admin/*', )'
+// 'as' ... 名前付きルートを一括で指定 ->name('admin.****');
+
+//上記コードは以下と同じ
+//Route::middleware(['middleware' => 'auth:admin'], function(){ 
+//    Route::get('admin/home', [Admin\HomeController::class, 'index'])->name('admin.home');
+//});
