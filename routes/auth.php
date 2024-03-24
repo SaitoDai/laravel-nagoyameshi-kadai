@@ -41,6 +41,8 @@ Route::middleware('guest:admin')->group(function () {
                 ->name('admin.login');
 
     Route::post('admin/login', [Admin\Auth\AuthenticatedSessionController::class, 'store']);
+
+    Route::get('admin/get', [Admin\UserConstroller::class, 'index']);
 });
 
 Route::middleware('auth')->group(function () {
@@ -66,8 +68,8 @@ Route::middleware('auth')->group(function () {
                 ->name('logout');
 });
 
-    //この'auth:admin'ってどこから来たんだ？
-    Route::middleware('auth:admin')->group(function () {
-        Route::post('admin/logout', [Admin\Auth\AuthenticatedSessionController::class, 'destroy'])
-                    ->name('admin.logout');
-    });
+//この'auth:admin'ってどこから来たんだ？
+Route::middleware('auth:admin')->group(function () {
+    Route::post('admin/logout', [Admin\Auth\AuthenticatedSessionController::class, 'destroy'])
+                ->name('admin.logout');
+});
