@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\Admin\UserConstroller;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest', 'guest:admin'])->group(function () {
@@ -41,10 +42,9 @@ Route::middleware('guest:admin')->group(function () {
                 ->name('admin.login');
 
     Route::post('admin/login', [Admin\Auth\AuthenticatedSessionController::class, 'store']);
-
-    Route::get('admin/get', [Admin\UserConstroller::class, 'index']);
 });
 
+// URLに'admin/*'が含まれていれば'admin.login'へ、いなければ'login'へ(auth middleware)
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
                 ->name('verification.notice');
@@ -68,8 +68,10 @@ Route::middleware('auth')->group(function () {
                 ->name('logout');
 });
 
-//この'auth:admin'ってどこから来たんだ？
+// URLに'admin/*'が含まれていれば'admin.login'へ、いなければ'login'へ(auth middleware)
 Route::middleware('auth:admin')->group(function () {
     Route::post('admin/logout', [Admin\Auth\AuthenticatedSessionController::class, 'destroy'])
                 ->name('admin.logout');
+
+    Route::get('admin/get', [Admin\UserController::class, 'index'])->name('admin.users.index');
 });

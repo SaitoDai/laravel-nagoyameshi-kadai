@@ -12,7 +12,7 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-            //$request->is() リクエストがURLに含まれているかを調べている
+            //$request->is()…リクエストがURLに含まれているかを調べている
             if ($request->is('admin/*')) {
                 return route('admin.login');
             }
